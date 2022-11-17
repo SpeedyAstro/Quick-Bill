@@ -4,6 +4,11 @@
  */
 package billingsoftware;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
+
 /**
  *
  * @author pande
@@ -13,8 +18,23 @@ public class StartProject2 extends javax.swing.JFrame {
     /**
      * Creates new form StartProject2
      */
+    int delay=50,time=1;
+    Timer tm = new Timer(delay, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jProgressBar1.setValue(time);
+            if(time==101) {
+                tm.stop();
+                new Login().setVisible(true);
+            }
+            time++;
+        }
+    });
+    
     public StartProject2() {
         initComponents();
+        
+        tm.start();
     }
 
     /**
@@ -33,6 +53,11 @@ public class StartProject2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Cascadia Code", 1, 36)); // NOI18N
@@ -52,6 +77,11 @@ public class StartProject2 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        tm.start();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

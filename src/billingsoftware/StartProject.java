@@ -4,6 +4,10 @@
  */
 package billingsoftware;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
 /**
  *
  * @author pande
@@ -13,8 +17,18 @@ public class StartProject extends javax.swing.JFrame {
     /**
      * Creates new form StartProject
      */
+        int delay=10,time=1;
+    Timer tm = new Timer(delay, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            jProgressBar1.setValue(time);
+            if(time==101) tm.stop();
+            time++;
+        }
+    });
     public StartProject() {
         initComponents();
+        tm.start();
     }
 
     /**
