@@ -25,7 +25,7 @@ public class StartProject2 extends javax.swing.JFrame {
             jProgressBar1.setValue(time);
             if(time==101) {
                 tm.stop();
-                new Login().setVisible(true);
+                new Login().setVisible(true);   // loading login frame 
             }
             time++;
         }

@@ -4,6 +4,12 @@
  */
 package billingsoftware;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pande
@@ -68,7 +74,7 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 100, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 100, 40));
 
         jButton2.setFont(new java.awt.Font("Hack NF", 1, 14)); // NOI18N
         jButton2.setText("Exit");
@@ -83,6 +89,25 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String email = jTextField1.getText();
+        String pass = jPasswordField1.getText();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/billing_software","root","792002");
+            PreparedStatement ps = con.prepareStatement("select * from register where email=? and password=?");
+            ps.setString(1, email);
+            ps.setString(2, pass);
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                new admin.AdminPanel().setVisible(true);
+                setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Email Id and Password didn't match","LoginError",JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

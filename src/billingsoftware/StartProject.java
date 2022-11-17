@@ -22,13 +22,17 @@ public class StartProject extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             jProgressBar1.setValue(time);
-            if(time==101) tm.stop();
+            if(time==101) {
+                tm.stop();
+                new Login().setVisible(true);   // loading login frame 
+                setVisible(false);
+            }
             time++;
         }
     });
     public StartProject() {
         initComponents();
-        tm.start();
+        
     }
 
     /**
@@ -53,7 +57,15 @@ public class StartProject extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jProgressBar1.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
+        jProgressBar1.setStringPainted(true);
         getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 606, 960, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -78,6 +90,11 @@ public class StartProject extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        tm.start();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
