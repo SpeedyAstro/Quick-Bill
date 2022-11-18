@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BillingSoftware">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/BillingSoftware.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

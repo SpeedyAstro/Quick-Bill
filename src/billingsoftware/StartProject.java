@@ -6,6 +6,7 @@ package billingsoftware;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
@@ -17,12 +18,24 @@ public class StartProject extends javax.swing.JFrame {
     /**
      * Creates new form StartProject
      */
-        int delay=10,time=1;
+        int delay=20,time=1;
     Timer tm = new Timer(delay, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             jProgressBar1.setValue(time);
-            if(time==101) {
+            if(time==30){
+                jLabel7.setText("loadin up modules .. please wait");
+            }
+            if(time==60){
+                jLabel7.setText("Almost there");
+            }
+            if(time==80){
+                jLabel7.setText("Loading up Enviroment");
+            }
+            if(time==90){
+                jLabel7.setText("Completed!!");
+            }
+            if(time==100) {
                 tm.stop();
                 new Login().setVisible(true);   // loading login frame 
                 setVisible(false);
@@ -50,6 +63,7 @@ public class StartProject extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -82,6 +96,11 @@ public class StartProject extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo2.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 260, 250));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel7.setText("Loading modules . . .");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/222-27-47.gif"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -138,6 +157,7 @@ public class StartProject extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
 }

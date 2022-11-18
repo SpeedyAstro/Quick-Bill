@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        setResizable(false);
         initComponents();
     }
 
@@ -100,7 +101,8 @@ public class Login extends javax.swing.JFrame {
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                new admin.AdminPanel().setVisible(true);
+                new admin.main.AdminPanel().setVisible(true);
+                
                 setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Email Id and Password didn't match","LoginError",JOptionPane.ERROR_MESSAGE);
