@@ -34,8 +34,14 @@ private static AdminPanel adminpanel;
             public void menuSelected(int index, int indexSubMenu) {
                 if(index==0&&indexSubMenu==0){
                     showForm(new Form_Dashboard());
-                }else{
-                    showForm(new Form_Empty(index+" "+indexSubMenu));
+                }
+                else{
+                    if(index ==4 && indexSubMenu==1){
+                        showForm(new admin.employee.RegisterEmployee());
+                    }
+                    else{
+                        showForm(new Form_Empty(index+" "+indexSubMenu));
+                    }
                 }
             }
         });

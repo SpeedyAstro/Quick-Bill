@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/billingsoftware/StartProject2.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/billingsoftware/BillingSoftware.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/form/Form_Empty.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/billingsoftware/StartProject.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/billingsoftware/Login.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/menu/Menu.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/main/AdminPanel.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/form/Form_Dashboard.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/card/Card.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/main/AdminPanel.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/swing/table/Table.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/menu/Item.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/card/LabelIcon.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/employee/RegisterEmployee.java</file>
         </group>
     </open-files>
 </project-private>
