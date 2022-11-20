@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author pande
@@ -34,5 +35,31 @@ public class Db_Operations {
         }
         return Status;
     }
-    
+    public static boolean register(String name1,String email1,String pass,String phone_no,String module1,String gender){
+        boolean status = false;
+        try{
+            Connection con = dbconnection.DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("insert into register values(?,?,?,?,?,?)"); //sql query
+            ps.setString(1, name1);
+            ps.setString(2, email1);
+            ps.setString(3, pass);
+            ps.setString(4, gender);
+            ps.setString(5, phone_no);
+            ps.setString(6, module1);
+            
+            int test = ps.executeUpdate();
+            if(test>0){
+                status = true;
+                
+            }
+            else{
+                status = false;
+                
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return status;
+    }
 }

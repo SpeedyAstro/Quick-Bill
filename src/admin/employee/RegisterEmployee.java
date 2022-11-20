@@ -166,32 +166,17 @@ public class RegisterEmployee extends javax.swing.JPanel {
         String phone_no = jTextField3.getText();
         String module1 = "Employee";
         // -------------- Database Connection ----------------------
-        try{
-            Connection con = dbconnection.DbConnect.getConnection();
-            PreparedStatement ps = con.prepareStatement("insert into register values(?,?,?,?,?,?)"); //sql query
-            ps.setString(1, name1);
-            ps.setString(2, email1);
-            ps.setString(3, pass);
-            ps.setString(4, gender);
-            ps.setString(5, phone_no);
-            ps.setString(6, module1);
-            
-            int test = ps.executeUpdate();
-            if(test>0){
-                JOptionPane.showMessageDialog(this, "Employee Registered Successfully");
+        boolean status = dbconnection.Db_Operations.register(name1, email1, pass, phone_no, module1, gender);
+        if(status) {
+            JOptionPane.showMessageDialog(this, "Employee Registered Successfully");
                 // Making text fields empty after successful operation
                 jTextField1.setText("");
                 jTextField2.setText("");
                 jTextField3.setText("");
                 jPasswordField1.setText("");
                 buttonGroup1.clearSelection();
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "An Error Occured","Register Error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
+        }else{
+            JOptionPane.showMessageDialog(this, "An Error Occured","Register Error",JOptionPane.ERROR_MESSAGE);
         }
         //-----------------------------------------------------------------
     }//GEN-LAST:event_jButton1ActionPerformed
