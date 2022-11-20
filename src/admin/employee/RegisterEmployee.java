@@ -167,8 +167,7 @@ public class RegisterEmployee extends javax.swing.JPanel {
         String module1 = "Employee";
         // -------------- Database Connection ----------------------
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/billing_software","root","792002");
+            Connection con = dbconnection.DbConnect.getConnection();
             PreparedStatement ps = con.prepareStatement("insert into register values(?,?,?,?,?,?)"); //sql query
             ps.setString(1, name1);
             ps.setString(2, email1);
@@ -194,6 +193,7 @@ public class RegisterEmployee extends javax.swing.JPanel {
         catch(Exception e){
             e.printStackTrace();
         }
+        //-----------------------------------------------------------------
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
