@@ -26,6 +26,7 @@ public class RegisterEmployee extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -91,6 +92,7 @@ public class RegisterEmployee extends javax.swing.JPanel {
         jLabel5.setText("Gender");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 156, 27));
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(204, 51, 0));
         jRadioButton1.setText("Male");
@@ -101,6 +103,7 @@ public class RegisterEmployee extends javax.swing.JPanel {
         });
         add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, -1, -1));
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(204, 51, 0));
         jRadioButton2.setText("Female");
@@ -144,6 +147,7 @@ public class RegisterEmployee extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
