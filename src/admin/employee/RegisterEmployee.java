@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import validations.RegExValidations;
 /**
  *
  * @author pande
@@ -166,17 +167,35 @@ public class RegisterEmployee extends javax.swing.JPanel {
         String phone_no = jTextField3.getText();
         String module1 = "Employee";
         // -------------- Database Connection ----------------------
-        boolean status = dbconnection.Db_Operations.register(name1, email1, pass, phone_no, module1, gender);
-        if(status) {
-            JOptionPane.showMessageDialog(this, "Employee Registered Successfully");
-                // Making text fields empty after successful operation
-                jTextField1.setText("");
-                jTextField2.setText("");
-                jTextField3.setText("");
-                jPasswordField1.setText("");
-                buttonGroup1.clearSelection();
-        }else{
-            JOptionPane.showMessageDialog(this, "An Error Occured","Register Error",JOptionPane.ERROR_MESSAGE);
+        RegExValidations rv = new RegExValidations();
+        if(!rv.nameValidation(name1)){
+            JOptionPane.showMessageDialog(this, "Invalid Name","Register Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!rv.emailValidation(email1)){
+            JOptionPane.showMessageDialog(this, "Invalid Email Id","Register Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!rv.passwordValidate(pass)){
+            JOptionPane.showMessageDialog(this, "Invalid Password","Register Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!rv.phoneNoValidation(phone_no)){
+            JOptionPane.showMessageDialog(this, "Invalid phone number","Register Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(gender==""){
+            JOptionPane.showMessageDialog(this, "Please select gender","Register Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            boolean status = dbconnection.Db_Operations.register(name1, email1, pass, phone_no, module1, gender);
+            if(status) {
+                JOptionPane.showMessageDialog(this, "Employee Registered Successfully");
+                    // Making text fields empty after successful operation
+                    jTextField1.setText("");
+                    jTextField2.setText("");
+                    jTextField3.setText("");
+                    jPasswordField1.setText("");
+                    buttonGroup1.clearSelection();
+            }else{
+                JOptionPane.showMessageDialog(this, "An Error Occured","Register Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
         //-----------------------------------------------------------------
     }//GEN-LAST:event_jButton1ActionPerformed
