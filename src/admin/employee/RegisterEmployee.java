@@ -4,6 +4,10 @@
  */
 package admin.employee;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 /**
  *
  * @author pande
@@ -125,6 +129,11 @@ public class RegisterEmployee extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Register Employee");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 540, -1, 51));
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 630));
     }// </editor-fold>//GEN-END:initComponents
@@ -144,6 +153,48 @@ public class RegisterEmployee extends javax.swing.JPanel {
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name1 = jTextField1.getText();
+        String email1 = jTextField2.getText();
+        char[] password1 = jPasswordField1.getPassword();
+        String pass = String.valueOf(password1);
+        String gender = "";
+        if(jRadioButton1.isSelected()) gender = "M";
+        else if(jRadioButton2.isSelected()) gender = "F";
+        String phone_no = jTextField3.getText();
+        String module1 = "Employee";
+        // -------------- Database Connection ----------------------
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/billing_software","root","792002");
+            PreparedStatement ps = con.prepareStatement("insert into register values(?,?,?,?,?,?)"); //sql query
+            ps.setString(1, name1);
+            ps.setString(2, email1);
+            ps.setString(3, pass);
+            ps.setString(4, gender);
+            ps.setString(5, phone_no);
+            ps.setString(6, module1);
+            
+            int test = ps.executeUpdate();
+            if(test>0){
+                JOptionPane.showMessageDialog(this, "Employee Registered Successfully");
+                // Making text fields empty after successful operation
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jPasswordField1.setText("");
+                buttonGroup1.clearSelection();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "An Error Occured","Register Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
