@@ -61,4 +61,17 @@ public class Db_Operations {
         }
         return status;
     }
+    public static ResultSet showAllEmployee(){
+        ResultSet rs = null;
+        try{
+            Connection con = dbconnection.DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from register where module='Employee'");
+            rs = ps.executeQuery();
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
 }

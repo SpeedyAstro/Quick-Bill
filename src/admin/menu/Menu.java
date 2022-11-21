@@ -40,7 +40,7 @@ public class Menu extends JPanel {
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.PERM_CONTACT_CALENDAR, "Calendar"));
         addTitle("Tools");
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.WHATSHOT, "Employee", "Recruit Employee", "Edit Employee", "All Employee", "Remove Employee"));
-        addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.DIRECTIONS_BIKE, "Staff List", "Admins", "Promotes", "Dispatchers"));
+        addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.PEOPLE, "Staff List", "Admins", "Promotes", "Dispatchers"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.DVR, "Events", "Scheduled Meeting", "Upcoming", "Upcoming", "Upcoming"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.PIE_CHART_OUTLINED, "Charts", "Apex", "Flot", "Peity", "Sparkline"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.VIEW_LIST, "Table", "Basic Tables", "Data Table"));
