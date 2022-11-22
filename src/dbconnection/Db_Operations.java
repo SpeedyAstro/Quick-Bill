@@ -74,4 +74,17 @@ public class Db_Operations {
         }
         return rs;
     }
+    public static ResultSet getSelectedEmployee(String email){
+        ResultSet rs = null;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from register where email=?");
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
 }
