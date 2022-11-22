@@ -59,9 +59,19 @@ public class ViewAllEmployee extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelMouseEffect1 = new admin.form.PanelMouseEffect();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jTextField4 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         panelMouseEffect1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -82,9 +92,44 @@ public class ViewAllEmployee extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
-        panelMouseEffect1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 610));
+        panelMouseEffect1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 610));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 230, 30));
+
+        jTextField2.setEditable(false);
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 230, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 230, 30));
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Male");
+        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Female");
+        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 230, 30));
+
+        jButton1.setText("Update");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 80, 30));
+
+        jButton2.setText("Cancel");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 80, 30));
+
+        panelMouseEffect1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 480, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,10 +143,52 @@ public class ViewAllEmployee extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+        int row = jTable.getSelectedRow();
+        String email = (String)jTable.getValueAt(row, 2);
+        ResultSet rs = dbconnection.Db_Operations.getSelectedEmployee(email);
+        try{
+            if(rs!=null){
+                if(rs.next()){
+                    jTextField1.setText(rs.getString("name"));
+                    jTextField2.setText(rs.getString("email"));
+                    jTextField3.setText(rs.getString("password"));
+                    jTextField4.setText(rs.getString("phone_no"));
+                    String gender = rs.getString("gender");
+                    if(gender.equals("M")){
+                        jRadioButton1.setSelected(true);
+                    }
+                else{
+                      jRadioButton2.setSelected(true);
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(email);
+    }//GEN-LAST:event_jTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private admin.form.PanelMouseEffect panelMouseEffect1;
     // End of variables declaration//GEN-END:variables
 }
