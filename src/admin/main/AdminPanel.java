@@ -39,8 +39,8 @@ private static AdminPanel adminpanel;
                     if(index ==4 && indexSubMenu==1){
                         showForm(new admin.employee.RegisterEmployee());
                     }
-                    else if(index ==4 && indexSubMenu==3){
-                        showForm(new admin.employee.ViewAllEmployee());
+                    else if(index ==4 && indexSubMenu==2){
+                        showForm(new admin.employee.EditEmployeeDet());
                     }
                     else{
                         showForm(new Form_Empty(index+" "+indexSubMenu));

@@ -87,4 +87,36 @@ public class Db_Operations {
         }
         return rs;
     }
+    
+    public static int UpdateEmployeeDetails(String name,String email,String phone_no,String gender,String password){
+        int i = 0;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("update register set name=?, password=?, gender=?, phone_no=? where email=?");
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ps.setString(3, gender);
+            ps.setString(4, phone_no);
+            ps.setString(5, email);
+            
+            i = ps.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
+    
+    public static int DeleteEmployee(String email){
+        int i =0;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("delete from register where email=?");
+            ps.setString(1, email);
+            i = ps.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return i;
+    }
 }

@@ -5,6 +5,7 @@
 package admin.employee;
 
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -12,14 +13,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pande
  */
-public class ViewAllEmployee extends javax.swing.JPanel {
+public class EditEmployeeDet extends javax.swing.JPanel {
     Object [] row;
     DefaultTableModel model;
 
     /**
      * Creates new form ViewAllEmployee
      */
-    public ViewAllEmployee() {
+    public EditEmployeeDet() {
         
         
         initComponents();
@@ -72,6 +73,11 @@ public class ViewAllEmployee extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         panelMouseEffect1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -103,6 +109,7 @@ public class ViewAllEmployee extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -111,7 +118,10 @@ public class ViewAllEmployee extends javax.swing.JPanel {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 230, 30));
 
         jTextField2.setEditable(false);
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 230, 30));
+
+        jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 230, 30));
 
         buttonGroup1.add(jRadioButton1);
@@ -121,13 +131,47 @@ public class ViewAllEmployee extends javax.swing.JPanel {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Female");
         jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
+
+        jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 230, 30));
 
+        jButton1.setFont(new java.awt.Font("Hack Nerd Font", 1, 14)); // NOI18N
         jButton1.setText("Update");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 80, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 100, 40));
 
-        jButton2.setText("Cancel");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 80, 30));
+        jButton2.setFont(new java.awt.Font("Hack Nerd Font", 1, 14)); // NOI18N
+        jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 90, 40));
+
+        jLabel1.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        jLabel1.setText("Name");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 50, -1));
+
+        jLabel2.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        jLabel2.setText("Email");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 60, -1));
+
+        jLabel3.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        jLabel3.setText("Password");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        jLabel4.setText("Gender");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 50, -1));
+
+        jLabel5.setFont(new java.awt.Font("Hack Nerd Font", 0, 12)); // NOI18N
+        jLabel5.setText("Phone No");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
 
         panelMouseEffect1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 480, 610));
 
@@ -175,11 +219,51 @@ public class ViewAllEmployee extends javax.swing.JPanel {
         System.out.println(email);
     }//GEN-LAST:event_jTableMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name = jTextField1.getText();
+        String email = jTextField2.getText();
+        String pass = jTextField3.getText();
+        String phone = jTextField4.getText();
+        String gender = "";
+        if(jRadioButton1.isSelected()){
+            gender = "M";
+        }else{
+            gender = "F";
+        }
+        int i = dbconnection.Db_Operations.UpdateEmployeeDetails(name, email, phone, gender, pass);
+        if(i>0) 
+        {    
+            JOptionPane.showMessageDialog(this, "Values updated Successfully");
+            new admin.main.AdminPanel().setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "An Error Occured","Update Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String email = jTextField2.getText();
+        int i = dbconnection.Db_Operations.DeleteEmployee(email);
+        if(i>0) 
+        {    
+            JOptionPane.showMessageDialog(this, "deleted Successfully");
+            new admin.main.AdminPanel().setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "An Error Occured","Update Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
