@@ -4,6 +4,9 @@
  */
 package admin.products;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author pande
@@ -60,6 +63,11 @@ public class AddItems extends javax.swing.JPanel {
         jLabel5.setText("Description");
 
         jButton1.setText("Select Image");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/—Pngtree—flat search item icon _4860968.png"))); // NOI18N
 
@@ -145,6 +153,17 @@ public class AddItems extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int i = fileChooser.showOpenDialog(this);
+        if(i==0){
+            File file = fileChooser.getSelectedFile();
+            String resource = file.getAbsolutePath();
+            jLabel6.setIcon(new javax.swing.ImageIcon(resource));
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
