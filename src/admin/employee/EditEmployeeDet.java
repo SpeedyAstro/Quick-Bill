@@ -42,7 +42,7 @@ public class EditEmployeeDet extends javax.swing.JPanel {
                     
                     row=new Object[]{srno,name,email};
                     model.addRow(row);
-                    System.out.println(name+" : "+email);
+//                    System.out.println(name+" : "+email);
                 }
             }
         }
