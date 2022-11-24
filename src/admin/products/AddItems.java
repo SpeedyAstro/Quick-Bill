@@ -4,8 +4,15 @@
  */
 package admin.products;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.RootPaneUI;
 
 /**
  *
@@ -16,6 +23,7 @@ public class AddItems extends javax.swing.JPanel {
     /**
      * Creates new form AddItems
      */
+    File file;
     public AddItems() {
         initComponents();
     }
@@ -151,7 +159,34 @@ public class AddItems extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add Item button action :
+        String item_id = jTextField1.getText();
+        String item_name = jTextField2.getText();
+        String item_price = jTextField3.getText();
+        String item_desc = jTextArea1.getText();
+        String item_category =  (String)jComboBox1.getSelectedItem();
+        
+        // fetch item data from database
+        try{
+            FileInputStream fis = new FileInputStream(file);
+            boolean status = dbconnection.Db_Operations.ProductMeta(fis, item_id,item_name,item_price,item_desc,item_category);
+            if(status){
+                JOptionPane.showMessageDialog(this, "Item added successfully");
+                jTextArea1.setText("");
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jComboBox1.setSelectedIndex(0);
+                jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/—Pngtree—flat search item icon _4860968.png")));
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Item not added , an error occured", "Item Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -159,9 +194,18 @@ public class AddItems extends javax.swing.JPanel {
         JFileChooser fileChooser = new JFileChooser();
         int i = fileChooser.showOpenDialog(this);
         if(i==0){
-            File file = fileChooser.getSelectedFile();
+            file = fileChooser.getSelectedFile();
             String resource = file.getAbsolutePath();
-            jLabel6.setIcon(new javax.swing.ImageIcon(resource));
+            BufferedImage img = null;
+            Image dimg = null;
+            try{
+                // resizing the image 
+                img = ImageIO.read(new File(resource));
+                dimg = img.getScaledInstance(jLabel6.getWidth(), jLabel6.getHeight(), jLabel6.getWidth());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            jLabel6.setIcon(new ImageIcon(dimg));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

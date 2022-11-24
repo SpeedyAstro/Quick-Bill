@@ -4,6 +4,7 @@
  */
 package dbconnection;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -118,5 +119,32 @@ public class Db_Operations {
             e.printStackTrace();
         }
         return i;
+    }
+    
+    public static boolean ProductMeta(FileInputStream file , String... str){
+        boolean status = false;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("insert into items values(?,?,?,?,?,?)");
+            ps.setString(1, str[0]);
+            ps.setString(2, str[1]);
+            ps.setString(3, str[2]);
+            ps.setString(4, str[3]);
+            ps.setString(5, str[4]);
+            ps.setBinaryStream(6, file);
+            
+            int i = ps.executeUpdate();
+            if(i>0){
+                status = true;
+            }
+            else{
+                status = false;
+            }
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return status;
     }
 }
