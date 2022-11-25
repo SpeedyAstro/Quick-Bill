@@ -45,6 +45,9 @@ private static AdminPanel adminpanel;
                     else if(index == 1 && indexSubMenu==3){
                         showForm(new admin.products.UpdateItem());
                     }
+                    else if(index == 3 && indexSubMenu==0){
+                        showForm(new validations.AdminChangePass());
+                    }
                     else if(index == 1 && indexSubMenu==2){
                         showForm(new admin.products.ViewAllItems());
                     }

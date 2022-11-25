@@ -37,7 +37,7 @@ public class Menu extends JPanel {
         addTitle("WEB APPS");
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.ADD_SHOPPING_CART, "Company Products", "Add Product", "View Products", "Edit Product Details"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.MESSAGE, "Chat"));
-        addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.PERM_CONTACT_CALENDAR, "Calendar"));
+        addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.SECURITY, "Change Password"));
         addTitle("Tools");
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.WHATSHOT, "Employee", "Recruit Employee", "Edit Employee", "All Employee", "Remove Employee"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.PEOPLE, "Staff List", "Admins", "Promotes", "Dispatchers"));
@@ -45,7 +45,7 @@ public class Menu extends JPanel {
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.PIE_CHART_OUTLINED, "Charts", "Apex", "Flot", "Peity", "Sparkline"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.VIEW_LIST, "Table", "Basic Tables", "Data Table"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.INSERT_EMOTICON, "Icons", "Feather Icons", "Flag Icons", "Mdi Icons"));
-        addTitle("PAGES");
+        addTitle("Internet");
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.INBOX, "Social Media", "Instagram", "Facebook", "Invoice", "Profile", "Pricing", "Timeline"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.LOCK_OUTLINE, "Authentication", "Login", "Register"));
         addMenuItem(new ModelMenuItem(GoogleMaterialDesignIcon.ERROR_OUTLINE, "Error", "404", "500"));
