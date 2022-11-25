@@ -20,7 +20,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelMouseEffect1" alignment="0" pref="1052" max="32767" attributes="0"/>
+          <Component id="panelMouseEffect1" alignment="0" pref="1114" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -42,7 +42,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="570" height="610"/>
+              <AbsoluteConstraints x="0" y="0" width="570" height="660"/>
             </Constraint>
           </Constraints>
 
@@ -70,7 +70,7 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="570" y="0" width="480" height="610"/>
+              <AbsoluteConstraints x="570" y="0" width="540" height="660"/>
             </Constraint>
           </Constraints>
 

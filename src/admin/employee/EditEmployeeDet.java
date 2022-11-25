@@ -105,7 +105,7 @@ public class EditEmployeeDet extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable);
 
-        panelMouseEffect1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 610));
+        panelMouseEffect1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 660));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -173,13 +173,13 @@ public class EditEmployeeDet extends javax.swing.JPanel {
         jLabel5.setText("Phone No");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
 
-        panelMouseEffect1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 480, 610));
+        panelMouseEffect1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 540, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMouseEffect1, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
+            .addComponent(panelMouseEffect1, javax.swing.GroupLayout.DEFAULT_SIZE, 1114, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
