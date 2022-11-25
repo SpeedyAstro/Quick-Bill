@@ -257,7 +257,7 @@ public class UpdateItem extends javax.swing.JPanel {
                     jTextField2.setText(rs.getString("item_name"));
                     jTextField3.setText(rs.getString("item_price"));
                     jComboBox1.setSelectedItem(rs.getString("item_category"));
-                    System.out.println(rs.getString("item_category"));
+//                    System.out.println(rs.getString("item_category"));
                     jTextArea1.setText(rs.getString("item_desc"));
                     
                     
