@@ -7,10 +7,13 @@ package admin.products;
 import admin.main.AdminPanel;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author pande
  */
 public class UpdateItem extends javax.swing.JPanel {
+    File file;
     admin.main.AdminPanel adminPanel = new AdminPanel();
     /**
      * Creates new form UpdateItem
@@ -113,8 +117,18 @@ public class UpdateItem extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTextArea1);
 
         jButton1.setText("Select");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -291,6 +305,43 @@ public class UpdateItem extends javax.swing.JPanel {
                 jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/—Pngtree—flat search item icon _4860968.png")));
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser filechooser=new JFileChooser();
+        int i=filechooser.showOpenDialog(this);
+        try
+        {
+            if(i==0)
+            {
+                file=filechooser.getSelectedFile();
+                String img_path=file.getAbsolutePath();
+            
+                BufferedImage bufimg = null;
+                Image dimg = null;
+                try 
+                {
+                    bufimg = ImageIO.read(new File(img_path));
+                    dimg = bufimg.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),Image.SCALE_SMOOTH);
+                } 
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+                jLabel1.setIcon(new ImageIcon(dimg));
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
