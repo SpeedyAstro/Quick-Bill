@@ -147,4 +147,66 @@ public class Db_Operations {
         }
         return status;
     }
+    
+    public static ResultSet getAllItems()
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection con=dbconnection.DbConnect.getConnection();
+            
+            PreparedStatement ps=con.prepareStatement("select * from items");
+            rs=ps.executeQuery();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return rs;
+    }
+    
+    public static ResultSet getItemDetails(String item_id)
+    {
+        ResultSet rs = null;
+        try
+        {
+            Connection con=DbConnect.getConnection();
+            
+            PreparedStatement ps=con.prepareStatement("select * from items where item_id=?");
+            ps.setString(1, item_id);
+            rs=ps.executeQuery();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return rs;
+    }
+    
+    public static boolean deleteItem(String item_id)
+    {
+        boolean status=false;
+        try
+        {
+            Connection con=DbConnect.getConnection();
+            
+            PreparedStatement ps=con.prepareStatement("delete from items where item_id=?");
+            ps.setString(1, item_id);
+            
+            int i=ps.executeUpdate();
+            if(i>0)
+            {
+                status=true;
+            }
+            else
+            {
+                status=false;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return status;
+    }
 }

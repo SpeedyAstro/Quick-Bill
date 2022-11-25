@@ -14,7 +14,7 @@ import admin.menu.EventMenuSelected;
 
 /**
  *
- * @author Deepak
+ * @author Anubhav
  */
 public class AdminPanel extends javax.swing.JFrame {
 private static AdminPanel adminpanel;
@@ -41,6 +41,9 @@ private static AdminPanel adminpanel;
                     }
                     else if(index ==1 && indexSubMenu==1){
                         showForm(new admin.products.AddItems());
+                    }
+                    else if(index == 1 && indexSubMenu==3){
+                        showForm(new admin.products.UpdateItem());
                     }
                     else if(index ==4 && indexSubMenu==2){
                         showForm(new admin.employee.EditEmployeeDet());

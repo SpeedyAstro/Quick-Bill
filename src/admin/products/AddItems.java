@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.RootPaneUI;
+
 
 /**
  *
@@ -169,7 +169,7 @@ public class AddItems extends javax.swing.JPanel {
         // fetch item data from database
         try{
             FileInputStream fis = new FileInputStream(file);
-            boolean status = dbconnection.Db_Operations.ProductMeta(fis, item_id,item_name,item_price,item_desc,item_category);
+            boolean status = dbconnection.Db_Operations.ProductMeta(fis, item_id,item_name,item_price,item_category,item_desc);
             if(status){
                 JOptionPane.showMessageDialog(this, "Item added successfully");
                 jTextArea1.setText("");
