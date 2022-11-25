@@ -8,6 +8,7 @@ import admin.main.AdminPanel;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -308,6 +309,52 @@ public class UpdateItem extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        // Update Button code
+        String item_id=jTextField1.getText();
+        String item_name=jTextField2.getText();
+        String item_price=jTextField3.getText();
+        String item_desc=jTextArea1.getText();
+        String item_category=(String)jComboBox1.getSelectedItem();
+        
+        try
+        {
+            if(file != null)
+            {
+                FileInputStream fis=new FileInputStream(file);
+                
+                boolean status=dbconnection.Db_Operations.updateItemWithImage(fis, item_id, item_name, item_price, item_desc, item_category);
+                if(status)
+                {
+                    JOptionPane.showMessageDialog(this, "Item updated successfully");
+
+                    new admin.main.AdminPanel();
+                    setVisible(false);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Item not updated due to some error", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else
+            {
+                boolean status=dbconnection.Db_Operations.updateItemWithoutImage(item_id, item_name, item_price, item_desc, item_category);
+                if(status)
+                {
+                    JOptionPane.showMessageDialog(this, "Item updated successfully");
+
+                    new admin.main.AdminPanel();
+                    setVisible(false);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Item not updated due to some error", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
