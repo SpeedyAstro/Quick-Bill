@@ -209,4 +209,67 @@ public class Db_Operations {
         }
         return status;
     }
+    
+    public static boolean updateItemWithImage(FileInputStream fis, String... str)
+    {
+        boolean status=false;
+        try
+        {
+            Connection con=DbConnect.getConnection();
+            
+            PreparedStatement ps=con.prepareStatement("update items set item_name=?, item_price=?, item_desc=?, item_category=?, item_img=? where item_id=?");
+            ps.setString(1, str[1]);
+            ps.setString(2, str[2]);
+            ps.setString(3, str[3]);
+            ps.setString(4, str[4]);
+            ps.setBinaryStream(5, fis);
+            ps.setString(6, str[0]);
+            
+            int i=ps.executeUpdate();
+            if(i>0)
+            {
+                status=true;
+            }
+            else
+            {
+                status=false;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return status;
+    }
+    
+    public static boolean updateItemWithoutImage(String... str)
+    {
+        boolean status=false;
+        try
+        {
+            Connection con=DbConnect.getConnection();
+            
+            PreparedStatement ps=con.prepareStatement("update items set item_name=?, item_price=?, item_desc=?, item_category=? where item_id=?");
+            ps.setString(1, str[1]);
+            ps.setString(2, str[2]);
+            ps.setString(3, str[3]);
+            ps.setString(4, str[4]);
+            ps.setString(5, str[0]);
+            
+            int i=ps.executeUpdate();
+            if(i>0)
+            {
+                status=true;
+            }
+            else
+            {
+                status=false;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return status;
+    }
 }
