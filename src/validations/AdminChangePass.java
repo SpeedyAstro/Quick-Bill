@@ -4,6 +4,8 @@
  */
 package validations;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pande
@@ -26,6 +28,8 @@ public class AdminChangePass extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
@@ -37,7 +41,13 @@ public class AdminChangePass extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 103, 395, 46));
+
+        jLabel5.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel5.setText("Email");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 70, -1));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 260, 40));
+        add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(675, 100, 290, 46));
         add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 247, 395, 46));
         add(jPasswordField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 396, 395, 50));
 
@@ -45,12 +55,17 @@ public class AdminChangePass extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Cascadia Code", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 255));
         jButton1.setText("Update ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 194, 52));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("Old Password");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 77, 80, 20));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 80, 20));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
@@ -66,6 +81,30 @@ public class AdminChangePass extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 640));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String email = jTextField1.getText();
+        String Oldpass = jPasswordField1.getText();
+        String Pass = jPasswordField2.getText();
+        String NewPass = jPasswordField3.getText();
+        if(!Pass.equals(NewPass)){
+            JOptionPane.showMessageDialog(this, "Password didn't match","Password Error",JOptionPane.ERROR_MESSAGE);
+            jPasswordField2.setText("");
+            jPasswordField3.setText("");
+        }else{
+            boolean status = dbconnection.Db_Operations.updateAdminPassword(email, NewPass);
+            if(status){
+                JOptionPane.showMessageDialog(this, "Password Changed!");
+                jPasswordField2.setText("");
+                jPasswordField3.setText("");
+                jPasswordField1.setText("");
+                jTextField1.setText("");
+            }else{
+                JOptionPane.showMessageDialog(this, "Email or Password didnt match ","Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -73,8 +112,10 @@ public class AdminChangePass extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
