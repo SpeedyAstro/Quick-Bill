@@ -272,4 +272,24 @@ public class Db_Operations {
         }
         return status;
     }
+    public static boolean updateAdminPassword(String email,String pass){
+        boolean status = false;
+        try{
+            Connection con = DbConnect.getConnection();
+            
+            PreparedStatement ps = con.prepareStatement("update register set password=? where email=?");
+            ps.setString(1, pass);
+            ps.setString(2, email);
+            
+            int i = ps.executeUpdate();
+            if(i>0){
+                status = true;
+            }else{
+                status = false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return status;
+    }
 }
