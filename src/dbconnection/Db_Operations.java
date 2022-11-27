@@ -15,25 +15,20 @@ import java.sql.ResultSet;
  * @author pande
  */
 public class Db_Operations {
-    public static boolean login(String email , String pass){
-        boolean Status = false;
+    public static ResultSet login(String email , String pass){
+        ResultSet rs = null;
         try {
             Connection con = dbconnection.DbConnect.getConnection(); //database connection
             PreparedStatement ps = con.prepareStatement("select * from register where email=? and password=?");
             ps.setString(1, email);
             ps.setString(2, pass);
             
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                Status = true;
-                
-            }else{
-                Status = false;
-            }
+             rs = ps.executeQuery();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Status;
+        return rs;
     }
     public static boolean register(String name1,String email1,String pass,String phone_no,String module1,String gender){
         boolean status = false;
