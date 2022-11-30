@@ -4,6 +4,8 @@
  */
 package billingsoftware;
 
+import employee.EmployeePanel;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -94,15 +96,25 @@ public class Login extends javax.swing.JFrame {
         String email = jTextField1.getText();
         String pass = jPasswordField1.getText();
         // database Connection for login
-        boolean status = dbconnection.Db_Operations.login(email, pass);
-        if(status) {
-            new admin.main.AdminPanel().setVisible(true);
-                
-                setVisible(false);
-        }
-        else{
+        ResultSet rs = dbconnection.Db_Operations.login(email, pass);
+        try{
+            if(rs.next()){
+                String module = rs.getString("module");
+                if(module.equals("admin")){
+                    new admin.main.AdminPanel().setVisible(true);
+                    setVisible(false);
+                }else if(module.equals("Employee")){
+                    String name = rs.getString("name");
+                    new employee.EmployeePanel(name).setVisible(true);
+                    setVisible(false);
+                }
+            }else{
             JOptionPane.showMessageDialog(rootPane, "Email Id and Password didn't match","LoginError",JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
