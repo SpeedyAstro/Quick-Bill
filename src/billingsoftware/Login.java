@@ -5,6 +5,7 @@
 package billingsoftware;
 
 import employee.EmployeePanel;
+import employee.loggedUser.LoggedInUser;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -105,7 +106,9 @@ public class Login extends javax.swing.JFrame {
                     setVisible(false);
                 }else if(module.equals("Employee")){
                     String name = rs.getString("name");
-                    new employee.EmployeePanel(name).setVisible(true);
+                    employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
+                    activeUser.setName(name);
+                    new employee.EmployeePanel().setVisible(true);
                     setVisible(false);
                 }
             }else{

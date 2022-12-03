@@ -4,6 +4,7 @@
  */
 package employee;
 
+import employee.loggedUser.LoggedInUser;
 import java.awt.Color;
 
 /**
@@ -11,13 +12,14 @@ import java.awt.Color;
  * @author pande
  */
 public class EmployeePanel extends javax.swing.JFrame {
-
+    String name = null;
     /**
      * Creates new form EmployeePanel
      */
-    public EmployeePanel(String name) {
+    public EmployeePanel() {
         initComponents();
-        
+        employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
+        name = activeUser.getName();
         jLabel1.setText("Welcome "+name);
     }
 
@@ -93,6 +95,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/my-profile.png"))); // NOI18N
         jLabel3.setText("My Profile");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reset-password.png"))); // NOI18N
@@ -179,6 +186,12 @@ public class EmployeePanel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jLabel2MouseMoved
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        new employee.profile.MyProfile(name).setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -209,7 +222,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeePanel(null).setVisible(true);
+                new EmployeePanel().setVisible(true);
             }
         });
     }
