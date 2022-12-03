@@ -4,18 +4,20 @@
  */
 package employee.profile;
 
+import employee.loggedUser.LoggedInUser;
+
 /**
  *
  * @author pande
  */
 public class MyProfile extends javax.swing.JFrame {
-    String name;
+    employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
+    String name = activeUser.getName();
     /**
      * Creates new form MyProfile
      */
-    public MyProfile(String name) {
+    public MyProfile() {
         initComponents();
-        this.name = name;
     }
 
     /**

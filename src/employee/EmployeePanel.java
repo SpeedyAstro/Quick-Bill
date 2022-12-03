@@ -12,14 +12,13 @@ import java.awt.Color;
  * @author pande
  */
 public class EmployeePanel extends javax.swing.JFrame {
-    String name = null;
+    employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
+    String name = activeUser.getName();
     /**
      * Creates new form EmployeePanel
      */
     public EmployeePanel() {
         initComponents();
-        employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
-        name = activeUser.getName();
         jLabel1.setText("Welcome "+name);
     }
 
@@ -104,6 +103,11 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reset-password.png"))); // NOI18N
         jLabel4.setText("Reset Password");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/employee-list.png"))); // NOI18N
         jLabel5.setText("Employee List");
@@ -191,6 +195,12 @@ public class EmployeePanel extends javax.swing.JFrame {
         new employee.profile.MyProfile(name).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        new EmployeeChangePass().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
