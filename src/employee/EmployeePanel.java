@@ -192,13 +192,13 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        new employee.profile.MyProfile(name).setVisible(true);
+        new employee.profile.MyProfile().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        new EmployeeChangePass().setVisible(true);
+        new ChangePass().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
 
