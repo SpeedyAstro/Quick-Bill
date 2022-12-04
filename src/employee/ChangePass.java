@@ -34,8 +34,6 @@ public class ChangePass extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
@@ -67,18 +65,12 @@ public class ChangePass extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 50, -1));
 
-        jLabel5.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel5.setText("Email");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 70, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 290, 40));
-
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 290, 46));
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 290, 46));
         jPanel1.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 247, 395, 46));
         jPanel1.add(jPasswordField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 396, 395, 50));
 
@@ -96,7 +88,7 @@ public class ChangePass extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("Old Password");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, 80, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 80, 20));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
@@ -138,8 +130,9 @@ public class ChangePass extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String email = jTextField1.getText();
         String Oldpass = jPasswordField1.getText();
+        boolean check = dbconnection.Db_Operations.checkOldPassword(activeUser.getEmail(), Oldpass);
+        if(!check) JOptionPane.showMessageDialog(this, "Acc didn't exists","Login Error",JOptionPane.ERROR_MESSAGE);
         String Pass = jPasswordField2.getText();
         String NewPass = jPasswordField3.getText();
         if(!Pass.equals(NewPass)){
@@ -147,13 +140,12 @@ public class ChangePass extends javax.swing.JFrame {
             jPasswordField2.setText("");
             jPasswordField3.setText("");
         }else{
-            boolean status = dbconnection.Db_Operations.updateAdminPassword(email, NewPass);
+            boolean status = dbconnection.Db_Operations.updateEmployeePassword(activeUser.getEmail(), NewPass);
             if(status){
                 JOptionPane.showMessageDialog(this, "Password Changed!");
                 jPasswordField2.setText("");
                 jPasswordField3.setText("");
                 jPasswordField1.setText("");
-                jTextField1.setText("");
             }else{
                 JOptionPane.showMessageDialog(this, "Email or Password didnt match ","Error",JOptionPane.ERROR_MESSAGE);
             }
@@ -212,13 +204,11 @@ public class ChangePass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -85,6 +85,8 @@ public class AdminChangePass extends javax.swing.JPanel {
         // TODO add your handling code here:
         String email = jTextField1.getText();
         String Oldpass = jPasswordField1.getText();
+        boolean check = dbconnection.Db_Operations.checkOldPassword(email, Oldpass);
+        if(!check) JOptionPane.showMessageDialog(this, "Acc didn't exists","Login Error",JOptionPane.ERROR_MESSAGE);
         String Pass = jPasswordField2.getText();
         String NewPass = jPasswordField3.getText();
         if(!Pass.equals(NewPass)){
