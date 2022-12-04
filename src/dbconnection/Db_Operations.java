@@ -267,12 +267,62 @@ public class Db_Operations {
         }
         return status;
     }
+    
+        public static boolean checkOldPassword(String email , String old_pwd)
+    {
+        boolean status=false;
+        try
+        {
+            Connection con=DbConnect.getConnection();
+            
+            PreparedStatement ps=con.prepareStatement("select * from register where email=? and password=?");
+            ps.setString(1, email);
+            ps.setString(2, old_pwd);
+            
+            ResultSet rs=ps.executeQuery();
+            if(rs.next())
+            {
+                status=true;
+            }
+            else
+            {
+                status=false;
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        
+        return status;
+    }
+        
     public static boolean updateAdminPassword(String email,String pass){
         boolean status = false;
         try{
             Connection con = DbConnect.getConnection();
             
             PreparedStatement ps = con.prepareStatement("update register set password=? where email=?");
+            ps.setString(1, pass);
+            ps.setString(2, email);
+            
+            int i = ps.executeUpdate();
+            if(i>0){
+                status = true;
+            }else{
+                status = false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return status;
+    }
+    
+    public static boolean updateEmployeePassword(String email,String pass){
+        boolean status = false;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareCall("update register set password =? where email=?");
             ps.setString(1, pass);
             ps.setString(2, email);
             
