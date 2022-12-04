@@ -337,4 +337,23 @@ public class Db_Operations {
         }
         return status;
     }
+    
+    public static boolean UpdateEmployeeProfile(String ... args){
+        boolean status = false;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareCall("update register set name=?,phone_no=?, gender=? where email=?");
+            ps.setString(1, args[0]);
+            ps.setString(2, args[1]);
+            ps.setString(3, args[2]);
+            ps.setString(4, args[3]);
+            
+            int i = ps.executeUpdate();
+            if(i>0) status = true;
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return status;
+    }
 }

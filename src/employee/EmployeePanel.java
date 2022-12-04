@@ -76,7 +76,7 @@ public class EmployeePanel extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(19, 19, 19))
@@ -262,8 +262,9 @@ public class EmployeePanel extends javax.swing.JFrame {
                 LoggedInUser activeUser = new LoggedInUser();
                 activeUser.setName("test");
                 activeUser.setEmail("test@gmail.com");
-                activeUser.setGender("m");
+                activeUser.setGender("M");
                 activeUser.setModule("Emp");
+                activeUser.setPhoneNo("98719188232");
                 new EmployeePanel(activeUser).setVisible(true);
             }
         });
