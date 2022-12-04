@@ -4,17 +4,20 @@
  */
 package employee.profile;
 
+import employee.loggedUser.LoggedInUser;
+
 /**
  *
  * @author pande
  */
 public class ViewAllProfiles extends javax.swing.JFrame {
-
+    employee.loggedUser.LoggedInUser activeUser;
     /**
      * Creates new form ViewAllProfiles
      */
-    public ViewAllProfiles() {
+    public ViewAllProfiles(LoggedInUser activeUser) {
         initComponents();
+        this.activeUser = activeUser;
     }
 
     /**
@@ -73,11 +76,12 @@ public class ViewAllProfiles extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        new employee.EmployeePanel().setVisible(true);
+        new employee.EmployeePanel(activeUser).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
 
@@ -111,7 +115,7 @@ public class ViewAllProfiles extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewAllProfiles().setVisible(true);
+                new ViewAllProfiles(null).setVisible(true);
             }
         });
     }

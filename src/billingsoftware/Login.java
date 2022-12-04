@@ -106,9 +106,18 @@ public class Login extends javax.swing.JFrame {
                     setVisible(false);
                 }else if(module.equals("Employee")){
                     String name = rs.getString("name");
+                    String email1 = rs.getString("email");
+                    String module1 = rs.getString("module");
+                    String gender = rs.getString("gender");
+                    String phno = rs.getString("phone_no");
                     employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
                     activeUser.setName(name);
-                    new employee.EmployeePanel().setVisible(true);
+//                    activeUser.setRs(rs);
+                    activeUser.setEmail(email1);
+                    activeUser.setGender(gender);
+                    activeUser.setModule(module1);
+                    activeUser.setPhoneNo(phno);
+                    new employee.EmployeePanel(activeUser).setVisible(true);
                     setVisible(false);
                 }
             }else{

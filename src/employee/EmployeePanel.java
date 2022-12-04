@@ -12,14 +12,15 @@ import java.awt.Color;
  * @author pande
  */
 public class EmployeePanel extends javax.swing.JFrame {
-    employee.loggedUser.LoggedInUser activeUser = new LoggedInUser();
-    String name = activeUser.getName();
+    LoggedInUser activeUser ;
+    
     /**
      * Creates new form EmployeePanel
      */
-    public EmployeePanel() {
+    public EmployeePanel(LoggedInUser activeUser) {
         initComponents();
-        jLabel1.setText("Welcome "+name);
+        this.activeUser = activeUser;
+        jLabel1.setText("Welcome "+activeUser.getName());
     }
 
     /**
@@ -94,6 +95,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/my-profile.png"))); // NOI18N
         jLabel3.setText("My Profile");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -103,6 +105,7 @@ public class EmployeePanel extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reset-password.png"))); // NOI18N
         jLabel4.setText("Reset Password");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -111,10 +114,22 @@ public class EmployeePanel extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/employee-list.png"))); // NOI18N
         jLabel5.setText("Employee List");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Cascadia Code", 1, 14)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/start-billing.png"))); // NOI18N
         jLabel6.setText("Start Billing");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,15 +207,27 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        new employee.profile.MyProfile().setVisible(true);
+        new employee.profile.MyProfile(activeUser).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        new ChangePass().setVisible(true);
+        new ChangePass(activeUser).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        new employee.profile.ViewAllProfiles(activeUser).setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        new employee.billing.StartBilling(activeUser).setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -232,7 +259,12 @@ public class EmployeePanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeePanel().setVisible(true);
+                LoggedInUser activeUser = new LoggedInUser();
+                activeUser.setName("test");
+                activeUser.setEmail("test@gmail.com");
+                activeUser.setGender("m");
+                activeUser.setModule("Emp");
+                new EmployeePanel(activeUser).setVisible(true);
             }
         });
     }

@@ -4,6 +4,7 @@
  */
 package employee;
 
+import employee.loggedUser.LoggedInUser;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,12 +12,14 @@ import javax.swing.JOptionPane;
  * @author pande
  */
 public class ChangePass extends javax.swing.JFrame {
-
+    employee.loggedUser.LoggedInUser activeUser;
     /**
      * Creates new form ChangePass
      */
-    public ChangePass() {
+    public ChangePass(LoggedInUser activeUser) {
         initComponents();
+        this.activeUser = activeUser;
+        jLabel7.setText(activeUser.getName()+" Change Password");
     }
 
     /**
@@ -29,6 +32,7 @@ public class ChangePass extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -45,6 +49,11 @@ public class ChangePass extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel7.setText("Employee Change Password");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 240, 20));
 
         jLabel6.setBackground(new java.awt.Color(0, 255, 204));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -158,7 +167,7 @@ public class ChangePass extends javax.swing.JFrame {
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         // back button 
-        new EmployeePanel().setVisible(true);
+        new EmployeePanel(activeUser).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -192,7 +201,7 @@ public class ChangePass extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePass().setVisible(true);
+                new ChangePass(null).setVisible(true);
             }
         });
     }
@@ -205,6 +214,7 @@ public class ChangePass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
