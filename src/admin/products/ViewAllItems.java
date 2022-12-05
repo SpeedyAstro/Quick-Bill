@@ -128,7 +128,7 @@ private void init() {
             {
                 if(rs.next())
                 {
-                    jLabel2.setText(rs.getString("item_desc"));
+                    jLabel2.setText("<HTML>"+rs.getString("item_desc")+"</HTML>");
                     InputStream is=rs.getBinaryStream("item_img");
                     BufferedImage imBuff = ImageIO.read(is);
 

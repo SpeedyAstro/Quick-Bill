@@ -9,14 +9,20 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author pande
  */
 public class StartBilling extends javax.swing.JFrame {
+    HashMap<String, ArrayList> order;
+    ArrayList<String> al;
     employee.loggedUser.LoggedInUser activeUser;
     int price = 1;
     /**
@@ -24,8 +30,12 @@ public class StartBilling extends javax.swing.JFrame {
      */
     public StartBilling(LoggedInUser activeUser) {
         initComponents();
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
         this.activeUser = activeUser;
         jLabel2.setText("Welcome "+activeUser.getName());
+        al = new ArrayList<>();
+        order = new HashMap<>();
     }
 
     /**
@@ -130,8 +140,18 @@ public class StartBilling extends javax.swing.JFrame {
         jLabel9.setText("\\");
 
             jButton1.setText("Add To Cart");
+            jButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton1ActionPerformed(evt);
+                }
+            });
 
             jButton2.setText("Continue Billing");
+            jButton2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton2ActionPerformed(evt);
+                }
+            });
 
             jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
             jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -287,6 +307,7 @@ public class StartBilling extends javax.swing.JFrame {
         
         try{
             if(rs.next()){
+                jButton1.setEnabled(true);
                 jTextField2.setText(rs.getString("item_name"));
                 jTextField3.setText(rs.getString("item_price"));
                 jComboBox1.setSelectedItem(rs.getString("item_category"));
@@ -311,18 +332,23 @@ public class StartBilling extends javax.swing.JFrame {
                     jLabel9.setIcon(new ImageIcon(dimg));
                 
             }else{
+                EmptyDetails();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+    
+    private void EmptyDetails(){
+        jButton1.setEnabled(false);
                 jTextField2.setText("");
                 jTextField3.setText("");
                 jComboBox1.setSelectedIndex(0);
                 jTextField4.setText("");
                 jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/default-item.png"))); // NOI18N
                 jLabel9.setText("\\");
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jTextField1KeyReleased
-
+    }
+    
     private void jSpinner1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinner1KeyReleased
         // TODO add your handling code here:
 //        int amount = (int)jSpinner1.getValue();
@@ -339,6 +365,33 @@ public class StartBilling extends javax.swing.JFrame {
 
     private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked
     }//GEN-LAST:event_jSpinner1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jButton2.setEnabled(true);
+        String item_id = jTextField1.getText();
+        String item_name = jTextField2.getText();
+        String item_price = jTextField3.getText();
+        String quantity = jSpinner1.getValue() + "";
+        
+        al = new ArrayList<>();
+        al.add(item_name);
+        al.add(item_price);
+        al.add(quantity);
+        
+        order.put(item_id, al);
+        
+        JOptionPane.showMessageDialog(rootPane, "Item Added Successfully!");
+        jTextField1.setText("");
+        EmptyDetails();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        for(Map.Entry me:order.entrySet()){
+            System.out.println(me.getKey()+" "+me.getValue());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
