@@ -7,8 +7,10 @@
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/products/ViewAllItems.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/products/UpdateItem.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/dbconnection/Db_Operations.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/billing/FinalBilling.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/billing/StartBilling.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/billing/FinalOrder.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/loggedUser/LoggedInUser.java</file>
         </group>
     </open-files>
 </project-private>

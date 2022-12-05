@@ -356,4 +356,35 @@ public class Db_Operations {
         }
         return status;
     }
+    
+    public static boolean InsertCustomerDetails(String... str){
+        boolean status = false;
+        String name = str[0];
+        String email = str[1];
+        String pass = str[2];
+        String gender = str[3];
+        String phone_no = str[4];
+        String module = str[5];
+        
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareCall("insert into register values(?,?,?,?,?,?)");
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ps.setString(3, pass);
+            ps.setString(4, gender);
+            ps.setString(5, phone_no);
+            ps.setString(6, module);
+            
+            int i = ps.executeUpdate();
+            if(i>0){
+                status = true;
+            }
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return status;
+    }
 }
