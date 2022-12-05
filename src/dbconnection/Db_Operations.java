@@ -322,7 +322,7 @@ public class Db_Operations {
         boolean status = false;
         try{
             Connection con = DbConnect.getConnection();
-            PreparedStatement ps = con.prepareCall("update register set password =? where email=?");
+            PreparedStatement ps = con.prepareStatement("update register set password =? where email=?");
             ps.setString(1, pass);
             ps.setString(2, email);
             
@@ -342,7 +342,7 @@ public class Db_Operations {
         boolean status = false;
         try{
             Connection con = DbConnect.getConnection();
-            PreparedStatement ps = con.prepareCall("update register set name=?,phone_no=?, gender=? where email=?");
+            PreparedStatement ps = con.prepareStatement("update register set name=?,phone_no=?, gender=? where email=?");
             ps.setString(1, args[0]);
             ps.setString(2, args[1]);
             ps.setString(3, args[2]);
@@ -368,7 +368,7 @@ public class Db_Operations {
         
         try{
             Connection con = DbConnect.getConnection();
-            PreparedStatement ps = con.prepareCall("insert into register values(?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into register values(?,?,?,?,?,?)");
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, pass);
@@ -386,5 +386,18 @@ public class Db_Operations {
             e.printStackTrace();
         }
         return status;
+    }
+    
+    public static ResultSet checkCustomerExists(String phone_no){
+        ResultSet rs = null;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from register where phone_no=?");
+            ps.setString(1, phone_no);
+            rs = ps.executeQuery();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return rs;
     }
 }

@@ -89,6 +89,12 @@ public class FinalBilling extends javax.swing.JFrame {
 
         jLabel5.setText("Phone no");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         jLabel6.setText("Name");
 
         jLabel7.setText("Email Id");
@@ -241,6 +247,26 @@ public class FinalBilling extends javax.swing.JFrame {
         if(status) JOptionPane.showMessageDialog(rootPane, "Customer Details inserted Successfully");
         else JOptionPane.showMessageDialog(rootPane, "An Error Occured!","Error",JOptionPane.ERROR_MESSAGE); 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        String phone_no = jTextField1.getText();
+        ResultSet rs = dbconnection.Db_Operations.checkCustomerExists(phone_no);
+        try{
+            if(rs.next()){
+                jTextField2.setText(rs.getString("name"));
+                jTextField3.setText(rs.getString("email"));
+                String gender = rs.getString("gender");
+                if(gender.equals("M")){
+                    jRadioButton1.setSelected(true);
+                }else{
+                    jRadioButton2.setSelected(true);
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
