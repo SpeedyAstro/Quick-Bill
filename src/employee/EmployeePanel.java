@@ -6,6 +6,8 @@ package employee;
 
 import employee.loggedUser.LoggedInUser;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -225,7 +227,8 @@ public class EmployeePanel extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        new employee.billing.StartBilling(activeUser).setVisible(true);
+        HashMap<String,ArrayList> order = new HashMap<>();
+        new employee.billing.StartBilling(activeUser,order).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 

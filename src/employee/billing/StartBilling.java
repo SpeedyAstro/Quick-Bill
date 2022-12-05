@@ -28,14 +28,15 @@ public class StartBilling extends javax.swing.JFrame {
     /**
      * Creates new form StartBilling
      */
-    public StartBilling(LoggedInUser activeUser) {
+    public StartBilling(LoggedInUser activeUser,HashMap order) {
         initComponents();
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
         this.activeUser = activeUser;
         jLabel2.setText("Welcome "+activeUser.getName());
         al = new ArrayList<>();
-        order = new HashMap<>();
+        this.order = order;
+        if(!order.isEmpty()) jButton2.setVisible(true);
     }
 
     /**
@@ -422,7 +423,7 @@ public class StartBilling extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartBilling(null).setVisible(true);
+                new StartBilling(null,null).setVisible(true);
             }
         });
     }
