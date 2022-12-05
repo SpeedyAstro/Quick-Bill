@@ -4,14 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/EmployeePanel.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/profile/ViewAllProfiles.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/ChangePass.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/validations/AdminChangePass.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/billingsoftware/Login.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/products/ViewAllItems.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/admin/products/UpdateItem.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/dbconnection/Db_Operations.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/profile/MyProfile.java</file>
             <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/billing/StartBilling.java</file>
-            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/loggedUser/LoggedInUser.java</file>
+            <file>file:/C:/Users/pande/Documents/NetBeansProjects/BillingSoftware/src/employee/billing/FinalOrder.java</file>
         </group>
     </open-files>
 </project-private>
