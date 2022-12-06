@@ -92,6 +92,8 @@ $ java BillingSoftware
 ## Download
 
 You can [download](https://github.com/Mr-Anubhav-pandey/Billing-Software/blob/main/BillingSoftware.jar) the latest jar file executable version of QuickBill for Windows, macOS and Linux.
+<hr>
+❚█═100+ hours work═█❚
 
 ## Emailware
 
