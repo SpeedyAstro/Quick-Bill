@@ -423,4 +423,32 @@ public class Db_Operations {
         }
         return status;
     }
+    
+    public static ResultSet CustomerDataFetch(String phone_no){
+        ResultSet rs = null;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from register where phone_no=?");
+            ps.setString(1, phone_no);
+            rs = ps.executeQuery();
+        }catch(Exception e){
+            System.out.println("test");
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+    public static ResultSet getCustomerPurchasedItems(String phone_no){
+        ResultSet rs = null;
+        try{
+            Connection con = DbConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement("select * from customer where customer_phno=?");
+            ps.setString(1,phone_no);
+            rs = ps.executeQuery();
+        }catch(Exception e){
+            System.out.println("testing hehe");
+            e.printStackTrace();
+        }
+        return rs;
+    }
 }
