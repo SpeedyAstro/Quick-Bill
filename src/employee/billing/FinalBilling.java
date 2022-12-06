@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import employee.loggedUser.LoggedInUser;
 
 /**
  *
@@ -17,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FinalBilling extends javax.swing.JFrame {
     HashMap<String, ArrayList> order;
+    LoggedInUser activeUser;
     /**
      * Creates new form FinalBilling
      */
-    public FinalBilling(HashMap order) {
+    public FinalBilling(LoggedInUser activeUser,HashMap order) {
         initComponents();
         this.order = order;
+        this.activeUser = activeUser;
     }
 
     /**
@@ -226,26 +229,43 @@ public class FinalBilling extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String phone_no = jTextField1.getText();
-        String name = jTextField2.getText();
-        String email = jTextField3.getText();
-        String gender = "";
-        if(jRadioButton1.isSelected()){
-            gender = "M";
-        }else{
-            gender = "F";
+        String phone_no1 = jTextField1.getText();
+        ResultSet rs = dbconnection.Db_Operations.checkCustomerExists(phone_no1);
+        try{
+            if (!rs.next()) {
+                String phone_no = jTextField1.getText();
+                String name = jTextField2.getText();
+                String email = jTextField3.getText();
+                String gender = "";
+                if (jRadioButton1.isSelected()) {
+                    gender = "M";
+                } else {
+                    gender = "F";
+                }
+                String module = "Customer";
+                String password = "";
+                for (int i = 0; i <= 2; i++) {
+                    password = password + name.charAt(i);
+                }
+                for (int i = 9; i >= 7; i--) {
+                    password = password + phone_no.charAt(i);
+                }
+                boolean status = dbconnection.Db_Operations.InsertCustomerDetails(name, email, password, gender, phone_no, module);
+                if (status) {
+                    JOptionPane.showMessageDialog(rootPane, "Customer Details inserted Successfully");
+                    new Payment(activeUser,order, jTextField3.getText(), jTextField2.getText(),phone_no).setVisible(true);
+                    setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "An Error Occured!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                new Payment(activeUser,order,jLabel3.getText(),jTextField2.getText(),phone_no1).setVisible(true);
+                setVisible(false); 
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        String module = "Customer";
-        String password = "";
-        for(int i=0; i<=2 ; i++){
-            password = password+name.charAt(i);
-        }
-        for(int i=9; i>=8 ; i--){
-            password = password + phone_no.charAt(i);
-        }
-        boolean status = dbconnection.Db_Operations.InsertCustomerDetails(name,email,password,gender,phone_no,module);
-        if(status) JOptionPane.showMessageDialog(rootPane, "Customer Details inserted Successfully");
-        else JOptionPane.showMessageDialog(rootPane, "An Error Occured!","Error",JOptionPane.ERROR_MESSAGE); 
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
@@ -262,6 +282,10 @@ public class FinalBilling extends javax.swing.JFrame {
                 }else{
                     jRadioButton2.setSelected(true);
                 }
+            }else{
+                jTextField2.setText("");
+                jTextField3.setText("");
+                buttonGroup1.clearSelection();
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -298,7 +322,7 @@ public class FinalBilling extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FinalBilling(null).setVisible(true);
+                new FinalBilling(null,null).setVisible(true);
             }
         });
     }
