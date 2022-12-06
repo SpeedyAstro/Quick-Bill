@@ -255,7 +255,7 @@ public class FinalOrder extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new FinalBilling(order).setVisible(true);
+        new FinalBilling(activeUser,order).setVisible(true);
         setVisible(false); 
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -400,4 +400,27 @@ public class Db_Operations {
         }
         return rs;
     }
+    
+    public static boolean customerBillingDetails(String customer_phno, String items, String date1, String time1, String emp_email) {
+        boolean status = false;
+        try {
+            Connection con = DbConnect.getConnection();
+
+            PreparedStatement ps = con.prepareStatement("insert into customer values(?,?,?,?,?)");
+            ps.setString(1, customer_phno);
+            ps.setString(2, items);
+            ps.setString(3, date1);
+            ps.setString(4, time1);
+            ps.setString(5, emp_email);
+            int i = ps.executeUpdate();
+            if (i > 0) {
+                status = true;
+            } else {
+                status = false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return status;
+    }
 }
