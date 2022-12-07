@@ -1,4 +1,4 @@
-<h2 align="center">Development Showcase</h3>
+<h2 align="center">Documentation</h3>
 
 <h1 align="center">
   <br>
@@ -28,6 +28,15 @@
   <a href="#related">Related</a> •
   <a href="#license">License</a>
 </p>
+
+
+# <h1 align='center'><a href="#"><code>Development Showcase</code></a></h1><img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="50"></h2>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/57632430/206098891-a28cfde8-936d-42eb-a8f0-6efe8bee3de1.gif" alt="animated" />
+	
+</p>
+
+
 
 ## Key Features
 
